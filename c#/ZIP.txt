@@ -1,0 +1,20 @@
+//Ñ¹Ëõ   zlib-Deflate    zlib.net
+        public static byte[] Zip(string value)
+        {
+            byte[] byteArray = Encoding.UTF8.GetBytes(value);
+            byte[] tmpArray;
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+
+                using (ZOutputStream outZStream = new ZOutputStream(ms, zlibConst.Z_DEFAULT_COMPRESSION))
+                {
+                    outZStream.Write(byteArray, 0, byteArray.Length);
+                    outZStream.Flush();
+
+
+                }
+                tmpArray = ms.ToArray();
+            }
+            return tmpArray;
+        }
